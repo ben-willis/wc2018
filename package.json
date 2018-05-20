@@ -1,0 +1,14 @@
+{
+  "name": "wc2018",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src.js",
+  "dependencies": {
+    "webpack": "^4.8.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ben-willis/wc2018.git"
+  },
+  "author": "Ben Willis"
+}
