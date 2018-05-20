@@ -10,7 +10,7 @@ Vue.component('fixtures', {
 	  		var res = [];
 	  		for( i=0; i<31 && fixtures.length > 0; i++) {
 	  			var todaysFixtures = [];
-	  			var currentDate = new Date(2016, 5, 10 + i)
+	  			var currentDate = new Date(2016, 5, 14 + i)
 	  			while(new Date(fixtures[0].date).getDate() == currentDate.getDate()) {
 	  				todaysFixtures.push(fixtures.shift());
 	  				if (fixtures.length == 0) {
@@ -30,7 +30,7 @@ Vue.component('fixtures', {
 	created: function () {
 		var self = this;
 		$.ajax({
-		url: "http://api.football-data.org/v1/soccerseasons/424/fixtures",
+		url: "http://api.football-data.org/v1/soccerseasons/467/fixtures",
 		headers: {"X-Auth-Token": "76f66f119a0d43608c73451f0c6f48d9"},
 		dataType : "json"
 	}).done(function (response) {
