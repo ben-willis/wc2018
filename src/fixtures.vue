@@ -32,7 +32,7 @@ export default {
           date: date.getDate(),
           fixtures: this.fixtures.filter(x => ((new Date(x.date)).setHours(0,0,0,0) == date.getTime()))
         }
-      });
+      }).filter(date => (date.fixtures.length != 0));
     }
   },
   created () {
@@ -52,7 +52,7 @@ export default {
 <style lang="css">
 .date {
   padding: 5px 10px;
-  background-color: #011;
+  background-color: #320A28;
   color: white;
   font-weight: normal;
 }

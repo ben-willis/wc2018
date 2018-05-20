@@ -84,7 +84,7 @@ a img {
 
 h1 {
   text-align: center;
-  background-color: #033;
+  background-color: #511642;
   color: white;
   font-size: 3em;
 }

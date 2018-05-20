@@ -57,7 +57,7 @@ export default {
 <style lang="css">
 .group {
   padding: 5px 10px;
-  background-color: #011;
+  background-color: #320A28;
   color: white;
   font-weight: bold;
 }
