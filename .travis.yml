@@ -1,9 +1,5 @@
 language: javascript
 
-cache:
-  directories:
-    - node_modules
-
 build:
   - webpack
 
