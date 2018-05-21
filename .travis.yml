@@ -16,11 +16,12 @@ before_deploy:
   - chmod 600 /tmp/deploy_rsa
   - ssh-add /tmp/deploy_rsa
 
-  - cp -r index.html build.js manifest.json icons build
+  - mkdir deploy
+  - cp -r index.html build.js manifest.json icons deploy
 
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/build ben@ben-willis.co.uk:/home/ben/wc2018
+  script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/deploy ben@ben-willis.co.uk:/home/ben/wc2018
   on:
     branch: master
