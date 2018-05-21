@@ -7,7 +7,7 @@ script: webpack
 notifications:
   - email: false
 
-ddons:
+addons:
   ssh_known_hosts: ben-willis.co.uk
 
 before_deploy:
