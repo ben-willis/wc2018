@@ -19,7 +19,7 @@ export default {
   computed: {
     days () {
       var dates = []
-      for (var i = 0; i < 31; i++) {
+      for (var i = 0; i < 40; i++) {
         dates.push(new Date(2018, 5, 14+i));
       }
 
