@@ -18,7 +18,13 @@
 export default {
   created () {
     this.kickoff = new Date(this.match.date);
-    this.home_team = this.match.homeTeamName ? this.match.homeTeamName : "TBD";
+    if (this.match.homeTeamName) {
+      this.home_team = this.match.homeTeamName
+    } else if (this.match.matchday === 8) {
+      this.home_team = "England"
+    } else {
+      this.home_team = "TBD"
+    }
     this.home_goals = this.match.result.goalsHomeTeam;
     this.away_team = this.match.awayTeamName ? this.match.awayTeamName : "TBD";
     this.away_goals =  this.match.result.goalsAwayTeam;
