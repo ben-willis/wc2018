@@ -49,7 +49,6 @@ export default {
           headers: {"X-Auth-Token": "76f66f119a0d43608c73451f0c6f48d9"},
           responseType : "json"
       }).then((response) => {
-        console.log(response);
         this.home_goals = response.body.fixture.result.goalsHomeTeam;
         this.away_goals = response.body.fixture.result.goalsAwayTeam;
         if (this.match.status === "FINISHED") {
