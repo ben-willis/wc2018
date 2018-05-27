@@ -7,7 +7,7 @@
         <span :class="{live: (status==1)}">{{away_goals}}</span>
       </div>
       <div v-else class="time">
-        <span>{{ time }}</span>
+        <span>{{ kickoff | time }}</span>
       </div>
       <div class="away">{{away_team}}</div>
     </div>
@@ -16,24 +16,25 @@
 
 <script>
 export default {
-  computed: {
-    time () {
-      var date = new Date(this.match.date);
-      return date.getHours() + ":" + ('0' + date.getMinutes()).slice(-2)
-    },
-    home_team () {return this.match.homeTeamName ? this.match.homeTeamName : "TBD"},
-    home_goals () { return this.match.result.goalsHomeTeam},
-    away_team () { return this.match.awayTeamName ? this.match.awayTeamName : "TBD"},
-    away_goals () { return this.match.result.goalsAwayTeam},
-    status () {
-      if (this.match.status == "FINISHED") {
-        return 2;
-      } else if (this.match.status == "IN_PLAY") {
-        this.update_score();
-        return 1;
-      } else {
-        return 0;
-      }
+  created () {
+    this.kickoff = new Date(this.match.date);
+    this.home_team = this.match.homeTeamName ? this.match.homeTeamName : "TBD";
+    this.home_goals = this.match.result.goalsHomeTeam;
+    this.away_team = this.match.awayTeamName ? this.match.awayTeamName : "TBD";
+    this.away_goals =  this.match.result.goalsAwayTeam;
+
+    if (this.match.status === "FINISHED") {
+      this.status = 2;
+    } else if (this.match.status === "IN_PLAY") {
+      this.status = 1;
+    } else {
+      this.status = 0;
+    }
+
+    if (this.status === 1 || this.kickoff.toDateString() === (new Date()).toDateString()) {
+      this.updateInterval = setInterval(function() {
+        this.update_score()
+      }.bind(this), 1 * 1000);
     }
   },
   methods: {
@@ -42,17 +43,22 @@ export default {
           headers: {"X-Auth-Token": "76f66f119a0d43608c73451f0c6f48d9"},
           responseType : "json"
       }).then((response) => {
+        console.log(response);
         this.home_goals = response.body.fixture.result.goalsHomeTeam;
-        this.away_goals = response.fixture.result.goalsAwayTeam;
-        if (response.fixture.status == "FINISHED") {
+        this.away_goals = response.body.fixture.result.goalsAwayTeam;
+        if (this.match.status === "FINISHED") {
+          clearInterval(this.updateInterval);
           this.status = 2;
-        } else if (response.fixture.status == "IN_PLAY") {
-          setTimeout(function(){ this.update_score() }, 60*1000);
+        } else if (this.match.status === "IN_PLAY") {
           this.status = 1;
-        } else {
-          this.status = 0;
         }
       });
+    }
+  },
+  filters: {
+    time (value) {
+      if (!value) return "";
+      return value.getHours() + ":" + ('0' + value.getMinutes()).slice(-2);
     }
   },
   props: ['match']

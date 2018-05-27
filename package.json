@@ -6,6 +6,10 @@
   "dependencies": {
     "vue": "^2.5.16"
   },
+  "scripts": {
+    "build": "webpack",
+    "build:live": "webpack --watch"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ben-willis/wc2018.git"
