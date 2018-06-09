@@ -8,10 +8,10 @@
 
 <script>
 export default {
-  created () {
-    this.number = this.player.jerseyNumber
-    this.name = this.player.name
-    this.position = this.player.position
+  computed: {
+    number () {return this.player.jerseyNumber},
+    name () {return this.player.name},
+    position () {return this.player.position}
   },
   props: ['player']
 }

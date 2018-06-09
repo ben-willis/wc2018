@@ -46,7 +46,6 @@ export default {
       });
     },
     get_fixtures () {
-      console.log("Am I called?")
       this.$http.get("http://api.football-data.org/v1/soccerseasons/467/fixtures", {
         "headers": {"X-Auth-Token": "76f66f119a0d43608c73451f0c6f48d9"},
         "responseType": "json"
