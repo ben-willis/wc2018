@@ -16,32 +16,45 @@
 
 <script>
 export default {
-  created () {
-    this.kickoff = new Date(this.match.date);
-    if (this.match.homeTeamName) {
-      this.home_team = this.match.homeTeamName
-    } else if (this.match.matchday === 8) {
-      this.home_team = "England"
-    } else {
-      this.home_team = "TBD"
-    }
-    this.home_goals = this.match.result.goalsHomeTeam;
-    this.away_team = this.match.awayTeamName ? this.match.awayTeamName : "TBD";
-    this.away_goals =  this.match.result.goalsAwayTeam;
-
-    this.home_team_id = this.match._links.homeTeam.href.split("/").pop();
-    this.away_team_id = this.match._links.awayTeam.href.split("/").pop();
-
-    if (this.match.status === "FINISHED") {
-      this.status = 2;
-    } else if (this.match.status === "IN_PLAY") {
-      this.status = 1;
-    } else {
-      this.status = 0;
-    }
-
-    if (this.status === 1 || this.kickoff.toDateString() === (new Date()).toDateString()) {
-      this.updateInterval = setInterval(function() {
+  computed: {
+    kickoff () {
+      return new Date(this.match.date);
+    },
+    home_team () {
+      if (this.match.homeTeamName) {
+        return this.match.homeTeamName
+      } else if (this.match.matchday === 8) {
+        return "England"
+      } else {
+        return "TBD"
+      }
+    },
+    home_goals () {
+      return this.match.result.goalsHomeTeam;
+    },
+    away_team () {
+        return this.match.awayTeamName ? this.match.awayTeamName : "TBD";
+    },
+    away_goals () {
+      this.match.result.goalsAwayTeam;
+    },
+    home_team_id () {
+      return this.match._links.homeTeam.href.split("/").pop();
+    },
+    away_team_id () {
+      return this.match._links.awayTeam.href.split("/").pop();
+    },
+    status () {
+      if (this.match.status === "FINISHED") {
+        return 2;
+      } else if (this.match.status === "IN_PLAY") {
+        return 1;
+      } else {
+        return 0;
+      }
+    },
+    update_interval () {
+      return setInterval(function() {
         this.update_score()
       }.bind(this), 1 * 1000);
     }

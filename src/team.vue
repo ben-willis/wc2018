@@ -51,13 +51,11 @@ export default {
         "headers": {"X-Auth-Token": "76f66f119a0d43608c73451f0c6f48d9"},
         "responseType": "json"
       }).then(response => {
-        let fixtures = response.body.fixtures.filter((fixture) => {
+        this.fixtures = response.body.fixtures.filter((fixture) => {
           let home_team_id = fixture._links.homeTeam.href.split("/").pop();
           let away_team_id = fixture._links.awayTeam.href.split("/").pop();
           return (this.$route.params.teamId == home_team_id || this.$route.params.teamId == away_team_id);
         });
-
-        this.$set(this, "fixtures", fixtures);
       });
     },
     get_group () {
@@ -65,14 +63,12 @@ export default {
         "headers": {"X-Auth-Token": "76f66f119a0d43608c73451f0c6f48d9"},
         "responseType": "json"
       }).then(response => {
-        let table = Object.keys(response.body.standings).map((key) => {
+        this.table = Object.keys(response.body.standings).map((key) => {
           return {
             group: key,
             standings: response.body.standings[key]
           }
         }).find((table) => table.standings.map(x => x.teamId).includes(parseInt(this.$route.params.teamId)));
-
-        this.$set(this, "table", table);
       });
     },
     get_squad () {
