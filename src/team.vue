@@ -1,5 +1,9 @@
 <template>
 	<div>
+    <div class="team">
+      <img class="flag" :src="team.crestUrl">
+      <span class="name"> {{team.name}}</span>
+    </div>
     <h2>Fixtures</h2>
     <match v-for="match in fixtures" :match="match"></match>
     <h2>Group {{table.group}}</h2>
@@ -17,6 +21,10 @@ import player from "./components/player.vue";
 export default {
   data() {
     return {
+      team: {
+        name: "",
+        crestUrl: ""
+      },
       fixtures: [],
       table: {
         group: "",
@@ -42,7 +50,7 @@ export default {
         "headers": {"X-Auth-Token": "76f66f119a0d43608c73451f0c6f48d9"},
         "responseType": "json"
       }).then(response => {
-        this.team = response.team;
+        this.team = response.body;
       });
     },
     get_fixtures () {
@@ -90,4 +98,18 @@ export default {
 </script>
 
 <style lang="css">
+.team {
+  text-align: center;
+}
+
+.team .flag {
+  height: 2em;
+  vertical-align: middle;
+}
+
+.team .name {
+  font-size: 2em;
+  margin-left: 10px;
+  vertical-align: middle;
+}
 </style>

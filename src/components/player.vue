@@ -3,6 +3,9 @@
     <span class="name">
       {{name}}
     </span>
+    <span class="position">
+      ({{position}})
+    </span>
   </div>
 </template>
 
@@ -18,4 +21,11 @@ export default {
 </script>
 
 <style lang="css">
+.player {
+  padding: 5px 10px;
+}
+
+.player .name {
+  font-weight: bold;
+}
 </style>
