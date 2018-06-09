@@ -1,7 +1,7 @@
 <template>
 	<div>
     <div v-for="table in tables">
-      <h2 class="group">Group {{ table.group }}</h2>
+      <h2>Group {{ table.group }}</h2>
       <standings :standings="table.standings"></standings>
     </div>
   </div>
@@ -55,10 +55,4 @@ export default {
 </script>
 
 <style lang="css">
-.group {
-  padding: 5px 10px;
-  background-color: #320A28;
-  color: white;
-  font-weight: bold;
-}
 </style>

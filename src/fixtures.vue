@@ -51,9 +51,6 @@ export default {
 
 <style lang="css">
 .date {
-  padding: 5px 10px;
-  background-color: #320A28;
-  color: white;
   font-weight: normal;
 }
 

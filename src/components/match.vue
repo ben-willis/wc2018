@@ -1,7 +1,7 @@
 <template>
   <div class="fixture">
     <div class="match">
-      <div class="home">{{home_team}}</div>
+      <div class="home"><router-link :to="'/team/'+home_team_id">{{home_team}}</router-link></div>
       <div v-if="status>0" class="scores">
         <span :class="{live: (status==1)}">{{home_goals}}</span>
         <span :class="{live: (status==1)}">{{away_goals}}</span>
@@ -9,7 +9,7 @@
       <div v-else class="time">
         <span>{{ kickoff | time }}</span>
       </div>
-      <div class="away">{{away_team}}</div>
+      <div class="away"><router-link :to="'/team/'+away_team_id">{{away_team}}</router-link></div>
     </div>
   </div>
 </template>
@@ -28,6 +28,9 @@ export default {
     this.home_goals = this.match.result.goalsHomeTeam;
     this.away_team = this.match.awayTeamName ? this.match.awayTeamName : "TBD";
     this.away_goals =  this.match.result.goalsAwayTeam;
+
+    this.home_team_id = this.match._links.homeTeam.href.split("/").pop();
+    this.away_team_id = this.match._links.awayTeam.href.split("/").pop();
 
     if (this.match.status === "FINISHED") {
       this.status = 2;

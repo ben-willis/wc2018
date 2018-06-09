@@ -7,7 +7,7 @@
       <th class="points">Pts</th>
     </tr>
     <tr class="row" v-for="team in standings">
-      <td class="country">{{team.team}}</td>
+      <td class="country"><router-link :to="'/team/'+team.teamId">{{team.team}}</router-link></td>
       <td class="played">{{team.playedGames}}</td>
       <td class="gd">{{team.goalDifference}}</td>
       <td class="points">{{team.points}}</td>
@@ -24,7 +24,6 @@ export default {
 <style lang="css">
 table {
   width: 100%;
-  margin: 5px;
 }
 
 th {
@@ -35,7 +34,7 @@ th {
 .country {
   text-align: left;
   width: 50%;
-  padding: 2px 5px;
+  padding: 5px 10px;
 }
 
 .played, .gd, .points {

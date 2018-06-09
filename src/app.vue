@@ -2,34 +2,16 @@
   <div id="app">
     <h1>World Cup 2018</h1>
     <ul class="menu">
-      <li v-on:click="updateRoute('fixtures')" :class="{active: (currentRoute=='fixtures')}">Fixtures</li>
-      <li v-on:click="updateRoute('tables')" :class="{active: (currentRoute=='tables')}">Tables</li>
+      <router-link to="/fixtures"><li :class="{active: ($route.path == '/fixtures')}">Fixtures</li></router-link>
+      <router-link to="/tables"><li :class="{active: ($route.path == '/tables')}">Tables</li></router-link>
     </ul>
-    <component :is="currentRoute"></component>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import fixtures from "./fixtures.vue";
-import tables from "./tables.vue";
-
 export default {
-  name: 'app',
-  data () {
-    return {
-      currentRoute: window.location.hash.substr(1) ? window.location.hash.substr(1) : "fixtures"
-    }
-  },
-  methods: {
-    updateRoute (newRoute) {
-      window.location.hash = "#" + newRoute
-      this.currentRoute = newRoute
-    }
-  },
-  components: {
-    fixtures,
-    tables
-  }
+  name: 'app'
 }
 </script>
 
@@ -74,6 +56,9 @@ table {
   }
 }
 
+a:link    { color: black; }
+a:visited { color: black; }
+
 a img {
   border: 0;
 }
@@ -87,6 +72,13 @@ h1 {
   background-color: #511642;
   color: white;
   font-size: 3em;
+}
+
+h2 {
+  padding: 5px 10px;
+  background-color: #320A28;
+  color: white;
+  font-weight: bold;
 }
 
 .menu {

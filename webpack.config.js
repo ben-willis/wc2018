@@ -45,6 +45,11 @@ module.exports = {
     ]
   },
   mode: "development",
+  resolve: {
+    alias: {
+      vue: 'vue/dist/vue.js'
+    }
+  },
   plugins: [
     new VueLoaderPlugin()
   ]
