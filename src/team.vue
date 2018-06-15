@@ -5,7 +5,7 @@
       <span class="name"> {{team.name}}</span>
     </div>
     <h2>Fixtures</h2>
-    <match v-for="match in fixtures" :match="match"></match>
+    <match showDate v-for="match in fixtures" :match="match"></match>
     <h2>Group {{table.group}}</h2>
     <standings :standings="table.standings"></standings>
     <h2>Squad</h2>

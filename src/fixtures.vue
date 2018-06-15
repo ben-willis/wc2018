@@ -50,11 +50,11 @@ export default {
 </script>
 
 <style lang="css">
-.date {
+h2.date {
   font-weight: normal;
 }
 
-.date .day {
+h2.date .day {
   font-weight: bold;
 }
 </style>

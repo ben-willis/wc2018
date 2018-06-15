@@ -1,6 +1,7 @@
 <template>
   <div class="fixture">
     <div class="match">
+      <div class="date" v-if="showDate">{{kickoff | date}}</div>
       <div class="home"><router-link :to="'/team/'+home_team_id">{{home_team}}</router-link></div>
       <div v-if="status!='TIMED'" class="scores">
         <span :class="{live: (status=='IN_PLAY')}">{{home_goals}}</span>
@@ -53,9 +54,17 @@ export default {
     time (value) {
       if (!value) return "";
       return value.getHours() + ":" + ('0' + value.getMinutes()).slice(-2);
+    },
+    date (value) {
+      if (!value) return "";
+      let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      return value.getDate() + " " + months[value.getMonth()]
     }
   },
-  props: ['match']
+  props: {
+    match: Object,
+    showDate: Boolean
+  }
 }
 </script>
 
@@ -68,6 +77,12 @@ export default {
   content: "";
   display: table;
   clear: both;
+}
+
+.match .date {
+  position: absolute;
+  color: #aaa;
+  font-weight: bold;
 }
 
 .match .home, .match .away {
