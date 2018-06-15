@@ -6,7 +6,7 @@
       <th class="gd">GD</th>
       <th class="points">Pts</th>
     </tr>
-    <tr class="row" v-for="team in standings">
+    <tr class="row" v-for="team in sortedStandings">
       <td class="country"><router-link :to="'/team/'+team.teamId">{{team.team}}</router-link></td>
       <td class="played">{{team.playedGames}}</td>
       <td class="gd">{{team.goalDifference}}</td>
@@ -17,7 +17,28 @@
 
 <script>
 export default {
-  props: ['standings']
+  props: ['standings'],
+  computed: {
+    sortedStandings() {
+      return this.standings.sort((teamA, teamB) => {
+        // A negative difference means teamA > team B so teamA sorted above teamB
+        let pointDifference = teamB.points - teamA.points
+        let gdDifference = teamB.goalDifference - teamA.goalDifference
+        let gfDifference = teamB.goals - teamA.goals
+        let gaDifference = teamA.goalsAgainst - teamB.goalsAgains
+        
+        if (pointDifference != 0) {
+          return pointDifference
+        } else if (gdDifference != 0) {
+          return gdDifference
+        } else if (gfDifference != 0) {
+          return gfDifference
+        } else {
+          return gaDifference
+        }
+      })
+    }
+  }
 }
 </script>
 

@@ -16,25 +16,6 @@ export default {
       tables: []
     }
   },
-  computed: {
-    days () {
-      var dates = []
-      for (var i = 0; i < 31; i++) {
-        dates.push(new Date(2018, 5, 14+i));
-      }
-
-      var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-      var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-      return dates.map(date => {
-        return {
-          day: weekdays[date.getDay()],
-          month: months[date.getMonth()],
-          date: date.getDate(),
-          fixtures: this.fixtures.filter(x => ((new Date(x.date)).setHours(0,0,0,0) == date.getTime()))
-        }
-      });
-    }
-  },
   created () {
     this.$http.get("http://api.football-data.org/v1/competitions/467/leagueTable", {
       "headers": {"X-Auth-Token": "76f66f119a0d43608c73451f0c6f48d9"},
