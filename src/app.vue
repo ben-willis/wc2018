@@ -94,8 +94,8 @@ h2 {
   text-align: center;
   width: 50%;
   font-weight: bold;
-  cursor: pointer;
   padding: 5px 0px;
+  color: #666;
 }
 
 .menu li:hover {
@@ -103,6 +103,7 @@ h2 {
 }
 
 .menu li:active, .menu li.active {
-  background-color: #ccc;
+  color: #320A28;
+  box-shadow: inset 0 -3px 0 #320A28;
 }
 </style>
