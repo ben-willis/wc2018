@@ -36,7 +36,7 @@ export default {
         return this.match.awayTeamName ? this.match.awayTeamName : "TBD";
     },
     away_goals () {
-      this.match.result.goalsAwayTeam;
+      return this.match.result.goalsAwayTeam;
     },
     home_team_id () {
       return this.match._links.homeTeam.href.split("/").pop();
