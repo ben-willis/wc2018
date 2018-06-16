@@ -3,9 +3,13 @@
     <div class="match">
       <div class="date" v-if="showDate">{{kickoff | date}}</div>
       <div class="home"><router-link :to="'/team/'+home_team_id">{{home_team}}</router-link></div>
-      <div v-if="status!='TIMED'" class="scores">
-        <span :class="{live: (status=='IN_PLAY')}">{{home_goals}}</span>
-        <span :class="{live: (status=='IN_PLAY')}">{{away_goals}}</span>
+      <div v-if="status=='IN_PLAY' || status=='FINISHED'" class="scores">
+        <transition name="goal-slide" mode="out-in">
+          <span :class="{live: (status=='IN_PLAY')}" :key="home_goals">{{home_goals}}</span>
+        </transition>
+        <transition name="goal-slide" mode="out-in">
+          <span :class="{live: (status=='IN_PLAY')}" :key="away_goals">{{away_goals}}</span>
+        </transition>
       </div>
       <div v-else class="time">
         <span>{{ kickoff | time }}</span>
@@ -122,7 +126,11 @@ export default {
   font-weight: bold;
   text-align: center;
   width: 1.5em;
+  height: 1.5em;
+  box-sizing: border-box;
+  overflow: hidden;
   display: inline-block;
+  transition: all .2s;
 }
 
 .match .scores span.live {
@@ -136,5 +144,15 @@ export default {
 
 .match .scores span:last-child {
   border-left: 1px solid white;
+}
+
+.goal-slide-enter-active {
+  transition: all .3s ease;
+}
+.goal-slide-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.goal-slide-enter, .goal-slide-leave-to {
+  padding-top: 1.5em;
 }
 </style>

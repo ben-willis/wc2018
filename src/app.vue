@@ -8,7 +8,7 @@
     <transition :duration="800">
       <error v-if="error">Error loading data :(</error>
     </transition>
-    <router-view></router-view>
+    <transition name="fade"><router-view></router-view></transition>
   </div>
 </template>
 
@@ -122,5 +122,18 @@ h2 {
 .menu li:active, .menu li.active {
   color: #320A28;
   box-shadow: inset 0 -3px 0 #320A28;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition-property: opacity;
+  transition-duration: .25s;
+}
+
+.fade-enter-active {
+  transition-delay: .25s;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0
 }
 </style>
