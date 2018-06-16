@@ -107,6 +107,7 @@ h2 {
 .header {
   position: fixed;
   width: 100%;
+  z-index: 999;
 }
 
 .menu {
