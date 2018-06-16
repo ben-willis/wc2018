@@ -26,8 +26,8 @@ export default {
       kickoff: new Date(this.match.date),
       home_team: (this.match.homeTeamName) ? this.match.homeTeamName : "TBD",
       away_team: (this.match.awayTeamName) ? this.match.awayTeamName : "TBD",
-      home_goals: this.match.result.goalsHomeTeam,
-      away_goals: this.match.result.goalsAwayTeam,
+      home_goals: (this.match.result.goalsHomeTeam) ? this.match.result.goalsHomeTeam : 0,
+      away_goals: (this.match.result.goalsAwayTeam) ? this.match.result.goalsAwayTeam : 0,
       home_team_id: this.match._links.homeTeam.href.split("/").pop(),
       away_team_id: this.match._links.awayTeam.href.split("/").pop(),
       status: this.match.status
@@ -46,9 +46,11 @@ export default {
           headers: {"X-Auth-Token": "76f66f119a0d43608c73451f0c6f48d9"},
           responseType : "json"
       }).then((response) => {
-        this.home_goals = response.body.fixture.result.goalsHomeTeam;
-        this.away_goals = response.body.fixture.result.goalsAwayTeam;
-        if (response.body.fixture.status === "FINISHED") {
+        let fixture = response.body.fixture;
+        this.home_goals = (fixture.result.goalsHomeTeam) ? fixture.result.goalsHomeTeam : 0;
+        this.away_goals = (fixture.result.goalsAwayTeam) ? fixture.result.goalsAwayTeam : 0;
+        if (fixture.status === "FINISHED") {
+          this.status = fixture.status;
           clearInterval(this.updateInterval);
         }
       });
