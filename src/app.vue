@@ -1,10 +1,16 @@
 <template>
   <div id="app">
-    <h1>World Cup 2018</h1>
-    <ul class="menu">
-      <router-link to="/fixtures"><li :class="{active: ($route.path == '/fixtures')}">Fixtures</li></router-link>
-      <router-link to="/tables"><li :class="{active: ($route.path == '/tables')}">Tables</li></router-link>
-    </ul>
+    <div class="header">
+      <h1>World Cup 2018</h1>
+      <ul class="menu">
+        <router-link to="/fixtures"><li :class="{active: ($route.path == '/fixtures')}">Fixtures</li></router-link>
+        <router-link to="/tables"><li :class="{active: ($route.path == '/tables')}">Tables</li></router-link>
+      </ul>
+    </div>
+    <div class="pseudo-header">
+      <h1>Can't see me...</h1>
+      <ul class="menu"><li>This is</li><li>a hack</li></ul>
+    </div>
     <transition :duration="800">
       <error v-if="error">Error loading data :(</error>
     </transition>
@@ -96,6 +102,11 @@ h2 {
   background-color: #320A28;
   color: white;
   font-weight: bold;
+}
+
+.header {
+  position: fixed;
+  width: 100%;
 }
 
 .menu {
