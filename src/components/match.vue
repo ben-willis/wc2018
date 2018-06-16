@@ -133,19 +133,12 @@ export default {
   overflow: hidden;
   display: inline-block;
   transition: all .2s;
+  vertical-align: bottom;
 }
 
 .match .scores span.live {
   background-color: #b20000;
   color: #fff;
-}
-
-.match .scores span:first-child {
-  border-right: 1px solid white;
-}
-
-.match .scores span:last-child {
-  border-left: 1px solid white;
 }
 
 .goal-slide-enter-active {

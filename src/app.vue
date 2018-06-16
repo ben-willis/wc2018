@@ -95,6 +95,11 @@ h1 {
   background-color: #511642;
   color: white;
   font-size: 3em;
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Moscow_July_2011-49.jpg/860px-Moscow_July_2011-49.jpg');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: 0% 60%;
+  background-blend-mode: overlay;
 }
 
 h2 {
@@ -108,6 +113,7 @@ h2 {
   position: fixed;
   width: 100%;
   z-index: 999;
+  box-shadow: 0px 0px 10px #111;
 }
 
 .menu {
