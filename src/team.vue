@@ -51,6 +51,9 @@ export default {
         "responseType": "json"
       }).then(response => {
         this.team = response.body;
+        this.$root.$emit("api-success");
+      }).catch(err => {
+        this.$root.$emit("api-error");
       });
     },
     get_fixtures () {
@@ -63,6 +66,9 @@ export default {
           let away_team_id = fixture._links.awayTeam.href.split("/").pop();
           return (this.$route.params.teamId == home_team_id || this.$route.params.teamId == away_team_id);
         });
+        this.$root.$emit("api-success");
+      }).catch(err => {
+        this.$root.$emit("api-error");
       });
     },
     get_group () {
@@ -76,6 +82,9 @@ export default {
             standings: response.body.standings[key]
           }
         }).find((table) => table.standings.map(x => x.teamId).includes(parseInt(this.$route.params.teamId)));
+        this.$root.$emit("api-success");
+      }).catch(err => {
+        this.$root.$emit("api-error");
       });
     },
     get_squad () {
@@ -86,6 +95,9 @@ export default {
         this.squad = response.body.players.sort((a,b) => {
           return a.jerseyNumber == b.jerseyNumber ? 0 : +(a.jerseyNumber > b.jerseyNumber) || -1;
         });
+        this.$root.$emit("api-success");
+      }).catch(err => {
+        this.$root.$emit("api-error");
       });
     }
   },

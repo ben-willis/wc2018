@@ -5,13 +5,30 @@
       <router-link to="/fixtures"><li :class="{active: ($route.path == '/fixtures')}">Fixtures</li></router-link>
       <router-link to="/tables"><li :class="{active: ($route.path == '/tables')}">Tables</li></router-link>
     </ul>
+    <transition :duration="800">
+      <error v-if="error">Error loading data :(</error>
+    </transition>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import error from "./components/error.vue";
+
 export default {
-  name: 'app'
+  name: 'app',
+  data () {
+    return {
+      error: false
+    }
+  },
+  mounted () {
+    this.$root.$on("api-error", (err) => { this.error = true });
+    this.$root.$on("api-success", (err) => { this.error = false });
+  },
+  components: {
+    error
+  }
 }
 </script>
 

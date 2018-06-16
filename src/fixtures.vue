@@ -41,6 +41,9 @@ export default {
       "responseType": "json"
     }).then(response => {
       this.fixtures = response.body.fixtures;
+      this.$root.$emit("api-success");
+    }).catch(err => {
+      this.$root.$emit("api-error");
     });
   },
   components: {

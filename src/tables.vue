@@ -27,6 +27,9 @@ export default {
           standings: response.body.standings[key]
         }
       });
+      this.$root.$emit("api-success");
+    }).catch(err => {
+      this.$root.$emit("api-error");
     });
   },
   components: {
