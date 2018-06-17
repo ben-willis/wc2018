@@ -7,10 +7,6 @@
         <router-link to="/tables"><li :class="{active: ($route.path == '/tables')}">Tables</li></router-link>
       </ul>
     </div>
-    <div class="pseudo-header">
-      <h1>World Cup 2018</h1>
-      <ul class="menu"><li>Fixtures</li><li>Tables</li></ul>
-    </div>
     <transition :duration="800">
       <error v-if="error">Error loading data :(</error>
     </transition>
@@ -110,7 +106,7 @@ h2 {
 }
 
 .header {
-  position: fixed;
+  position: sticky;
   width: 100%;
   z-index: 999;
   box-shadow: 0px 0px 10px #111;
