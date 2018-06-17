@@ -8,8 +8,8 @@
       </ul>
     </div>
     <div class="pseudo-header">
-      <h1>Can't see me...</h1>
-      <ul class="menu"><li>This is</li><li>a hack</li></ul>
+      <h1>World Cup 2018</h1>
+      <ul class="menu"><li>Fixtures</li><li>Tables</li></ul>
     </div>
     <transition :duration="800">
       <error v-if="error">Error loading data :(</error>
