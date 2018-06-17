@@ -18,6 +18,7 @@ export default {
   },
   created () {
     this.$http.get("http://api.football-data.org/v1/competitions/467/leagueTable", {
+      "timeout": 5*1000,
       "headers": {"X-Auth-Token": "76f66f119a0d43608c73451f0c6f48d9"},
       "responseType": "json"
     }).then(response => {
