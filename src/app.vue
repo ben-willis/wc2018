@@ -107,6 +107,7 @@ h2 {
 
 .header {
   position: sticky;
+  top: 0px;
   width: 100%;
   z-index: 999;
   box-shadow: 0px 0px 10px #111;
