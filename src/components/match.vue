@@ -15,6 +15,7 @@
         <span>{{ kickoff | time }}</span>
       </div>
       <div class="away"><router-link :to="'/team/'+away_team_id">{{away_team}}</router-link></div>
+      <div class="match-time" v-if="status=='IN_PLAY'">{{match_time}} mins</div>
     </div>
   </div>
 </template>
@@ -30,7 +31,26 @@ export default {
       away_goals: (this.match.result.goalsAwayTeam) ? this.match.result.goalsAwayTeam : 0,
       home_team_id: this.match._links.homeTeam.href.split("/").pop(),
       away_team_id: this.match._links.awayTeam.href.split("/").pop(),
-      status: this.match.status
+      status: this.match.status,
+      now: new Date()
+    }
+  },
+  computed: {
+    match_time() {
+      let ms_diff = this.now - this.kickoff;
+      let min_diff = ms_diff / (1000 * 60)
+
+      if (min_diff < 0) {
+        return 0;
+      } else if (min_diff < 45) {
+        return min_diff;
+      } else if (min_diff < 52) {
+        return 45;
+      } else if (min_diff < 97) {
+        return min_diff - 17;
+      } else {
+        return 90;
+      }
     }
   },
   created () {
@@ -39,6 +59,10 @@ export default {
         this.update_score()
       }.bind(this), 30*1000);
     }
+
+    setInterval(function() {
+      this.now = new Date();
+    }.bind(this), 1000);
   },
   methods: {
     update_score () {
@@ -87,7 +111,15 @@ export default {
 
 .match .date {
   position: absolute;
+  left: 5px;
   color: #aaa;
+  font-weight: bold;
+}
+
+.match .match-time {
+  position: absolute;
+  right: 5px;
+  color: #b20000;
   font-weight: bold;
 }
 
