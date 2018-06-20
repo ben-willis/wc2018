@@ -15,7 +15,7 @@
         <span>{{ kickoff | time }}</span>
       </div>
       <div class="away"><router-link :to="'/team/'+away_team_id">{{away_team}}</router-link></div>
-      <div class="match-time" v-if="status=='IN_PLAY'">{{match_time}} mins</div>
+      <div class="match-time" v-if="status=='IN_PLAY'">{{match_time}} {{"min" | pluralize(match_time)}}</div>
     </div>
   </div>
 </template>
@@ -38,7 +38,7 @@ export default {
   computed: {
     match_time() {
       let ms_diff = this.now - this.kickoff;
-      let min_diff = ms_diff / (1000 * 60)
+      let min_diff = Math.floor(ms_diff / (1000 * 60))
 
       if (min_diff < 0) {
         return 0;
@@ -89,6 +89,13 @@ export default {
       if (!value) return "";
       let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       return value.getDate() + " " + months[value.getMonth()]
+    },
+    pluralize (value, number) {
+      if (number == 1) {
+        return value;
+      } else {
+        return value + "s";
+      }
     }
   },
   props: {
