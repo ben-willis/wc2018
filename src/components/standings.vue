@@ -45,17 +45,25 @@ export default {
 <style lang="css">
 table {
   width: 100%;
+  border-collapse: collapse;
 }
 
 th {
-  background-color: #eee;
-  border-bottom: 1px solid black;
+  background-color: #efefef;
+  padding: 5px 10px 0px;
+}
+
+td {
+  padding: 5px 10px;
+}
+
+.row {
+  border-top: 1px solid #ddd;
 }
 
 .country {
   text-align: left;
   width: 50%;
-  padding: 5px 10px;
 }
 
 .played, .gd, .points {

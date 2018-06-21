@@ -103,6 +103,7 @@ h2 {
   background-color: #320A28;
   color: white;
   font-weight: bold;
+  box-shadow: 0px 5px 5px -2px inset #111;
 }
 
 .header {
