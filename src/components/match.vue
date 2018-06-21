@@ -46,7 +46,7 @@ export default {
         return min_diff;
       } else if (min_diff < 52) {
         return 45;
-      } else if (min_diff < 97) {
+      } else if (min_diff < 107) {
         return min_diff - 17;
       } else {
         return 90;
